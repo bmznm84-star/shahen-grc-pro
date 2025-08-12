@@ -1,0 +1,50 @@
+<!doctype html><html lang="ar" dir="rtl"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>شاهن - حوكمة قطاع النقل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{tga:{green:'#0f6d5f',sand:'#c9aa71',dark:'#0b3f37'}},fontFamily:{taj:['Tajawal','system-ui']}}},darkMode:'class'};</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>html,body{font-family:Tajawal,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.card{border-radius:1rem;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.06);padding:1.25rem;background:#fff}.dark .card{background:#0b0f1a;border-color:#243047} .chip{display:inline-flex;align-items:center;gap:.5rem;padding:.25rem .75rem;border-radius:999px;font-size:.75rem;font-weight:500;background:#f3f4f6}.dark .chip{background:#111827}</style>
+</head><body class="bg-[#f7f7f5] dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-taj"><header class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur border-b border-gray-200 dark:border-gray-800">
+<div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
+<img src="assets/tga-logo.svg" alt="TGA" class="h-9 w-auto">
+<div class="text-sm ms-auto flex items-center gap-2">
+<button id="levelBtn" class="chip"><span>المستوى:</span><span id="levelLabel">القطاع</span></button>
+<select id="levelSelect" class="chip bg-transparent border-none outline-none">
+<option value="sector">القطاع</option><option value="region">المنطقة</option><option value="operator">المشغل</option><option value="enterprise">المنشأة</option>
+</select>
+<button id="themeBtn" class="chip" title="الوضع الليلي/النهاري">🌓</button>
+</div></div></header>
+<main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
+<div class="flex items-center justify-between"><h1 class="text-2xl font-extrabold">لوحة القيادة — نظرة عامة</h1>
+<div class="flex gap-2"><span class="chip">UOC — المخرجات الشاملة</span><span class="chip">LEARN • ALIGN • PERFORM • REVIEW</span></div></div>
+<section class="grid md:grid-cols-4 gap-4">
+  <div class="card"><div class="text-sm text-gray-500">عدد العاملين</div><div class="mt-2 text-3xl font-bold" id="employees">—</div></div>
+  <div class="card"><div class="text-sm text-gray-500">نسبة السعودة</div><div class="mt-2 text-3xl font-bold"><span id="saudization">—</span><span class="text-sm ms-1">%</span></div></div>
+  <div class="card"><div class="text-sm text-gray-500">أنواع الشحنات (عدد)</div><div id="shipmentList" class="mt-3 grid grid-cols-2 gap-2 text-sm"></div></div>
+  <div class="card"><div class="text-sm text-gray-500">الحوادث هذا العام</div><div class="mt-2 text-3xl font-bold" id="incidents">—</div>
+    <div class="mt-3 text-xs text-gray-500">مؤشر KRI لمعدل الحوادث</div>
+    <div class="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2 mt-2"><div id="incidentBar" class="bg-red-500 h-2 rounded-full" style="width:0%"></div></div>
+  </div>
+</section>
+<section class="grid md:grid-cols-3 gap-4">
+  <div class="card"><div class="flex items-center justify-between"><h2 class="font-bold">VUCA Snapshot</h2><span class="chip">التقلب • عدم اليقين • التعقيد • الغموض</span></div><canvas id="vucaChart" class="mt-4"></canvas></div>
+  <div class="card"><div class="flex items-center justify-between"><h2 class="font-bold">UOC — المخرجات الشاملة (U1–U10)</h2><span class="chip">وزنية قابلة للتعديل</span></div><canvas id="uocRadar" class="mt-4"></canvas></div>
+  <div class="card"><div class="flex items-center justify-between"><h2 class="font-bold">نموذج الأداء الشامل</h2><span class="chip">فعالية • كفاءة • استجابة • مرونة</span></div><canvas id="perfQuad" class="mt-4"></canvas></div>
+</section>
+<section class="grid md:grid-cols-2 gap-4">
+  <div class="card"><div class="flex items-center justify-between"><h2 class="font-bold">Protector Mindset</h2><span class="chip">تعاون • استقرارية • مساءلة • رؤية • تنوع تخصصات • استباقية</span></div><canvas id="mindsetRadar" class="mt-4"></canvas></div>
+  <div class="card"><div class="flex items-center justify-between"><h2 class="font-bold">خريطة النضج (Heatmap)</h2><a href="stages.html" class="chip">تفاصيل النضج →</a></div><div id="maturityHeat" class="mt-4 grid grid-cols-5 gap-2 text-center text-xs"></div><div class="mt-3 flex justify-between text-xs"><span>1 بدائي</span><span>2 مُدار</span><span>3 متسق</span><span>4 مُقاس</span><span>5 مُحسّن</span></div></div>
+</section>
+<section class="grid md:grid-cols-2 gap-4">
+  <div class="card"><div class="flex items-center justify-between"><h2 class="font-bold">مصفوفة KPI / KRI / KCI</h2><a href="performance.html" class="chip">التفاصيل →</a></div><div id="kkkMatrix" class="mt-3 grid grid-cols-3 gap-3 text-sm"></div></div>
+  <div class="card"><div class="flex items-center justify-between"><h2 class="font-bold">خطة الضمان (Assurance)</h2><a href="compliance.html" class="chip">لوحة الضمان →</a></div>
+    <table id="assuranceTable" class="w-full mt-3 text-sm"><thead><tr class="text-left text-xs text-gray-500"><th class="py-1">العنصر</th><th>الأولوية</th><th>الجهة</th><th>الربع</th><th>الحالة</th></tr></thead><tbody></tbody></table>
+  </div>
+</section>
+</main>
+<footer class="max-w-7xl mx-auto px-4 py-8 text-xs text-gray-500">
+<p>مؤطر وفق <b>GRC Capability Model v3.5 (OCEG)</b> — مع مواءمة لمتطلبات هيئة النقل.</p>
+</footer><script src="assets/app.js"></script></body></html>

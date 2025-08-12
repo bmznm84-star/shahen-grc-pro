@@ -1,0 +1,25 @@
+<!doctype html><html lang="ar" dir="rtl"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>شاهن - حوكمة قطاع النقل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{tga:{green:'#0f6d5f',sand:'#c9aa71',dark:'#0b3f37'}},fontFamily:{taj:['Tajawal','system-ui']}}},darkMode:'class'};</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>html,body{font-family:Tajawal,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.card{border-radius:1rem;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.06);padding:1.25rem;background:#fff}.dark .card{background:#0b0f1a;border-color:#243047} .chip{display:inline-flex;align-items:center;gap:.5rem;padding:.25rem .75rem;border-radius:999px;font-size:.75rem;font-weight:500;background:#f3f4f6}.dark .chip{background:#111827}</style>
+</head><body class="bg-[#f7f7f5] dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-taj"><header class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur border-b border-gray-200 dark:border-gray-800">
+<div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
+<img src="assets/tga-logo.svg" alt="TGA" class="h-9 w-auto">
+<div class="text-sm ms-auto flex items-center gap-2">
+<button id="levelBtn" class="chip"><span>المستوى:</span><span id="levelLabel">القطاع</span></button>
+<select id="levelSelect" class="chip bg-transparent border-none outline-none">
+<option value="sector">القطاع</option><option value="region">المنطقة</option><option value="operator">المشغل</option><option value="enterprise">المنشأة</option>
+</select>
+<button id="themeBtn" class="chip" title="الوضع الليلي/النهاري">🌓</button>
+</div></div></header><main class="max-w-7xl mx-auto px-4 py-6 space-y-6"><h1 class="text-2xl font-extrabold">مراحل النضج</h1>
+<section class="card"><h2 class="font-bold">نموذج قياس النضج — تفصيلي</h2>
+  <table id="maturityTable" class="w-full mt-3 text-sm"><thead><tr class="text-left text-xs text-gray-500"><th class="py-1">المكون</th><th>العنصر</th><th>الوضع الحالي</th><th>المستهدف</th><th>الفجوة</th></tr></thead><tbody></tbody></table>
+</section>
+</main><footer class="max-w-7xl mx-auto px-4 py-8 text-xs text-gray-500">
+<p>مؤطر وفق <b>GRC Capability Model v3.5 (OCEG)</b> — مع مواءمة لمتطلبات هيئة النقل.</p>
+</footer><script src="assets/app.js"></script></body></html>
